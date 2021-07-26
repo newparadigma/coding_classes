@@ -10,38 +10,50 @@
 // 4. Вывести 2 зоопарка с самым большим количеством видов животных перечислить их и их количество.
 // 5. Экспортировать это всё в excel
 
-
 define('PATH', './zoo.xml');
 if (file_exists(PATH)) {
   $xml_object = simplexml_load_file(PATH);
+  $zoos = [];
+
   foreach ($xml_object->ZOO as $zoo_data) {
-    $owner = $zoo_data->OWNER;
-    $city = $zoo_data->CITY;
-    $open_hours = [
-      'Понедельник' => (string)$zoo_data->OPEN_HOURS->MONDAY,
-      'Вторник' => (string)$zoo_data->OPEN_HOURS->TUESDAY,
-      'Среда' => (string)$zoo_data->OPEN_HOURS->WEDNESDAY,
-      'Четверг' => (string)$zoo_data->OPEN_HOURS->THURSDAY,
-      'Пятница' => (string)$zoo_data->OPEN_HOURS->FRIDAY,
-      'Суббота' => (string)$zoo_data->OPEN_HOURS->SATURDAY,
-      'Воскресенье' => (string)$zoo_data->OPEN_HOURS->SUNDAY
-    ];
     $animals = [];
+    $animals_total_count = 0;
     foreach ($zoo_data->ANIMAL as $animal) {
       $superorder = (string)$animal->SUPERORDER;
       $count = $animal->MALES + $animal->FEMALES;
       $animals[$superorder] = $count;
+      $animals_total_count += $count;
     }
-    show_all_zoo_info($owner, $city, $animals, $open_hours);
+    $zoo = [
+      'owner' => (string)$zoo_data->OWNER,
+      'city' => (string)$zoo_data->CITY,
+      'open_hours' => [
+        'Понедельник' => (string)$zoo_data->OPEN_HOURS->MONDAY,
+        'Вторник' => (string)$zoo_data->OPEN_HOURS->TUESDAY,
+        'Среда' => (string)$zoo_data->OPEN_HOURS->WEDNESDAY,
+        'Четверг' => (string)$zoo_data->OPEN_HOURS->THURSDAY,
+        'Пятница' => (string)$zoo_data->OPEN_HOURS->FRIDAY,
+        'Суббота' => (string)$zoo_data->OPEN_HOURS->SATURDAY,
+        'Воскресенье' => (string)$zoo_data->OPEN_HOURS->SUNDAY,
+      ],
+      'animals' => $animals
+    ];
+    $zoos[$animals_total_count] = $zoo;
+    krsort($zoos);
+    // show_all_zoo_info($zoo['owner'], $zoo['city'], $zoo['animals'], $zoo['open_hours']);
+
   }
+  show_two_zoos_with_most_animals_count($zoos);
+  // var_dump($zoos);
+  // exit;
 } else {
   throw new \Exception('Не удалось найти файл - ' . PATH . "\n", 1);
 }
 
-function show_all_zoo_info($owner, $city, $animals, $open_hours) {
+function show_all_zoo_info($foo, $city, $animals, $open_hours) {
   print("Зоопарк:\n");
   print("  Город: $city\n");
-  print("  Владелец: $owner\n");
+  print("  Владелец: $foo\n");
   print("  Часы работы:\n");
   foreach ($open_hours as $day_of_week => $work_hours) {
     if ($work_hours == '') {
@@ -56,18 +68,32 @@ function show_all_zoo_info($owner, $city, $animals, $open_hours) {
   print("\n");
 }
 
+function show_two_zoos_with_most_animals_count($zoos) {
+  // 2. Вывести 2 зоопарка в которых больше всего животных и вывести их виды.
+  print("2 зоопарка с наибольшим количеством особей животных:\n");
+  $schetchik = 0;
+  foreach ($zoos as $zoo) {
+    print("Зоопарк - {$zoo['city']} - {$zoo['owner']}:\n");
+    print("Животные:\n");
+    foreach ($zoo['animals'] as $superorder => $count) {
+      print("  $superorder: $count особей\n");
+    }
+    print("\n");
+    $schetchik++;
+    if ($schetchik == 2) {
+      break;
+    }
+  }
+}
 
-
-// Зоопарк:
-//   Город: Москва
-//   Владелец: Ашот
-//   Часы работы:
-//     Понедельник: 10 - 17
-//     ...
-//   Животные:
-//     Обезьяна: 10 особей
-//     ...
-
+// 2 зоопарка с наибольшим количеством особей животных:
+// Зоопарк - Москва - Алберт Энштейн
+// Животные:
+//   Антилопа: 200 особей
+//   Хомяк: 200 особей
+// Зоопарк - Москва - Алберт Энштейн
+// Животные:
+//   Антилопа: 200 особей
 
 // [0] => SimpleXMLElement Object
 //     (
