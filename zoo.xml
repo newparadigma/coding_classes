@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ZOOS>
+  <ZOO>
+    <OWNER>Альберт Энштейн</OWNER>
+    <CODE>331</CODE>
+    <CITY>Москва</CITY>
+    <OPEN_HOURS>
+      <MONDAY>9 - 16</MONDAY>
+      <TUESDAY>9 - 16</TUESDAY>
+      <WEDNESDAY>9 - 16</WEDNESDAY>
+      <THURSDAY>9 - 16</THURSDAY>
+      <FRIDAY>9 - 20</FRIDAY>
+      <SATURDAY>9 - 14</SATURDAY>
+      <SUNDAY></SUNDAY>
+    </OPEN_HOURS>
+    <ANIMAL>
+      <SUPERORDER>Жираф</SUPERORDER>
+      <MALES>5</MALES>
+      <FEMALES>5</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Гепард</SUPERORDER>
+      <MALES>3</MALES>
+      <FEMALES>2</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Хомяк</SUPERORDER>
+      <MALES>1</MALES>
+      <FEMALES>344</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Лев</SUPERORDER>
+      <MALES>1</MALES>
+      <FEMALES></FEMALES>
+    </ANIMAL>
+  </ZOO>
+  <ZOO>
+    <OWNER>Джонни Браво</OWNER>
+    <CODE>333</CODE>
+    <CITY>Москва</CITY>
+    <OPEN_HOURS>
+      <MONDAY>10 - 15</MONDAY>
+      <TUESDAY>10 - 15</TUESDAY>
+      <WEDNESDAY>10 - 15</WEDNESDAY>
+      <THURSDAY>10 - 15</THURSDAY>
+      <FRIDAY></FRIDAY>
+      <SATURDAY>10 - 15</SATURDAY>
+      <SUNDAY></SUNDAY>
+    </OPEN_HOURS>
+    <ANIMAL>
+      <SUPERORDER>Лев</SUPERORDER>
+      <MALES>5</MALES>
+      <FEMALES>20</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Тигр</SUPERORDER>
+      <MALES>3</MALES>
+      <FEMALES>5</FEMALES>
+    </ANIMAL>
+  </ZOO>
+  <ZOO>
+    <OWNER>Джонни Браво</OWNER>
+    <CODE>334</CODE>
+    <CITY>Волгоград</CITY>
+    <OPEN_HOURS>
+      <MONDAY>10 - 15</MONDAY>
+      <TUESDAY>10 - 15</TUESDAY>
+      <WEDNESDAY>10 - 15</WEDNESDAY>
+      <THURSDAY>10 - 15</THURSDAY>
+      <FRIDAY></FRIDAY>
+      <SATURDAY>10 - 15</SATURDAY>
+      <SUNDAY></SUNDAY>
+    </OPEN_HOURS>
+    <ANIMAL>
+      <SUPERORDER>Лев</SUPERORDER>
+      <MALES>2</MALES>
+      <FEMALES>10</FEMALES>
+    </ANIMAL>
+  </ZOO>
+  <ZOO>
+    <OWNER>Лев Агутин</OWNER>
+    <CODE>400</CODE>
+    <CITY>Рязань</CITY>
+    <OPEN_HOURS>
+      <MONDAY></MONDAY>
+      <TUESDAY>9 - 18</TUESDAY>
+      <WEDNESDAY>9 - 18</WEDNESDAY>
+      <THURSDAY>9 - 18</THURSDAY>
+      <FRIDAY>9 - 18</FRIDAY>
+      <SATURDAY></SATURDAY>
+      <SUNDAY></SUNDAY>
+    </OPEN_HOURS>
+    <ANIMAL>
+      <SUPERORDER>Бобр</SUPERORDER>
+      <MALES>4</MALES>
+      <FEMALES>7</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Выдра</SUPERORDER>
+      <MALES>2</MALES>
+      <FEMALES>4</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Выдра</SUPERORDER>
+      <MALES>2</MALES>
+      <FEMALES>4</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Жираф</SUPERORDER>
+      <MALES></MALES>
+      <FEMALES>2</FEMALES>
+    </ANIMAL>
+  </ZOO>
+  <ZOO>
+    <OWNER>Андрей Вышков</OWNER>
+    <CODE>230</CODE>
+    <CITY>Коломна</CITY>
+    <OPEN_HOURS>
+      <MONDAY>9 - 21</MONDAY>
+      <TUESDAY>9 - 21</TUESDAY>
+      <WEDNESDAY>9 - 21</WEDNESDAY>
+      <THURSDAY>9 - 21</THURSDAY>
+      <FRIDAY>9 - 21</FRIDAY>
+      <SATURDAY>12 - 18</SATURDAY>
+      <SUNDAY>12 - 18</SUNDAY>
+    </OPEN_HOURS>
+    <ANIMAL>
+      <SUPERORDER>Скунс</SUPERORDER>
+      <MALES>1</MALES>
+      <FEMALES>1</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Рысь</SUPERORDER>
+      <MALES>1</MALES>
+      <FEMALES>2</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Енот</SUPERORDER>
+      <MALES>3</MALES>
+      <FEMALES>2</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Цапля</SUPERORDER>
+      <MALES>1</MALES>
+      <FEMALES>1</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Лама</SUPERORDER>
+      <MALES>4</MALES>
+      <FEMALES>6</FEMALES>
+    </ANIMAL>
+    <ANIMAL>
+      <SUPERORDER>Хомяк</SUPERORDER>
+      <MALES>1</MALES>
+      <FEMALES>3</FEMALES>
+    </ANIMAL>
+  </ZOO>
+</ZOOS>

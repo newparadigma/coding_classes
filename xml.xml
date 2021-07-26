@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TRANSACTIONS>
+  <TRANSACTION>
+    <DATE>2021-10-02 23:59:59</DATE>
+    <PERSON>Приходько Юрий Павлович</PERSON>
+      <SKU>
+        <BARCODE>3004005001</BARCODE>
+        <PRICE>100</PRICE>
+        <DISCOUNT>100</DISCOUNT>
+        <COUNT>4</COUNT>
+        <SUMM>300</SUMM>
+      </SKU>
+      <SKU>
+        <BARCODE>3004005002</BARCODE>
+        <PRICE>50</PRICE>
+        <DISCOUNT>10</DISCOUNT>
+        <COUNT>10</COUNT>
+        <SUMM>490</SUMM>
+      </SKU>
+      <SKU>
+        <BARCODE>3004005003</BARCODE>
+        <PRICE>1</PRICE>
+        <DISCOUNT>0</DISCOUNT>
+        <COUNT>2</COUNT>
+        <SUMM>2</SUMM>
+      </SKU>
+
+  </TRANSACTION>
+
+  <TRANSACTION>
+    <DATE>2021-09-17 14:18:23</DATE>
+    <PERSON>Уткин Дмитрий Юрьевич</PERSON>
+
+      <SKU>
+        <BARCODE>6546945869464956</BARCODE>
+        <PRICE>100</PRICE>
+        <DISCOUNT>20</DISCOUNT>
+        <COUNT>5</COUNT>
+        <SUMM>480</SUMM>
+      </SKU>
+
+  </TRANSACTION>
+
+  <TRANSACTION>
+    <DATE>2021-09-17 14:18:24</DATE>
+    <PERSON>Уткин Дмитрий Юрьевич</PERSON>
+
+      <SKU>
+        <BARCODE>6546945869464956</BARCODE>
+        <PRICE>100</PRICE>
+        <DISCOUNT>20</DISCOUNT>
+        <COUNT>5</COUNT>
+        <SUMM>480</SUMM>
+      </SKU>
+
+  </TRANSACTION>
+
+  <TRANSACTION>
+    <DATE>2021-06-08 21:22:44</DATE>
+    <PERSON>Жиробас Анатолий Сидорович</PERSON>
+
+      <SKU>
+        <BARCODE>2948021749729</BARCODE>
+        <PRICE>55</PRICE>
+        <DISCOUNT>15</DISCOUNT>
+        <COUNT>2</COUNT>
+        <SUMM>95</SUMM>
+      </SKU>
+
+  </TRANSACTION>
+</TRANSACTIONS>
