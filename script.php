@@ -13,8 +13,8 @@
 define('PATH', './zoo.xml');
 if (file_exists(PATH)) {
   $xml_object = simplexml_load_file(PATH);
-  $zoos = [];
-
+  $zoos_sorted_by_animals_total_count = [];
+  $zoos_sorted_by_superorder_count = [];
   foreach ($xml_object->ZOO as $zoo_data) {
     $animals = [];
     $animals_total_count = 0;
@@ -38,14 +38,17 @@ if (file_exists(PATH)) {
       ],
       'animals' => $animals
     ];
-    $zoos[$animals_total_count] = $zoo;
-    krsort($zoos);
-    // show_all_zoo_info($zoo['owner'], $zoo['city'], $zoo['animals'], $zoo['open_hours']);
+    $zoos_sorted_by_animals_total_count[$animals_total_count] = $zoo;
+    krsort($zoos_sorted_by_animals_total_count);
 
+    $zoos_sorted_by_superorder_count[count($zoo_data->ANIMAL)] = $zoo;
+    krsort($zoos_sorted_by_superorder_count);
+
+    show_all_zoo_info($zoo['owner'], $zoo['city'], $zoo['animals'], $zoo['open_hours']);
   }
-  show_two_zoos_with_most_animals_count($zoos);
-  // var_dump($zoos);
-  // exit;
+  show_two_zoos_with_most_animals_count($zoos_sorted_by_animals_total_count);
+  show_open_zoos_at_wednesday($zoos_sorted_by_animals_total_count);
+  show_two_zoos_with_most_superorder_count($zoos_sorted_by_superorder_count);
 } else {
   throw new \Exception('Не удалось найти файл - ' . PATH . "\n", 1);
 }
@@ -69,8 +72,29 @@ function show_all_zoo_info($foo, $city, $animals, $open_hours) {
 }
 
 function show_two_zoos_with_most_animals_count($zoos) {
-  // 2. Вывести 2 зоопарка в которых больше всего животных и вывести их виды.
   print("2 зоопарка с наибольшим количеством особей животных:\n");
+  print_zoo_data($zoos);
+}
+
+function show_open_zoos_at_wednesday($zoos) {
+  $open_zoos_at_wednesday = [];
+  print("Посещать в среду после 17 часов можно зоопарки:\n");
+  foreach ($zoos as $zoo) {
+    $open_hours_at_wednesday = $zoo['open_hours']['Среда'];
+    $zoo_close_at = mb_substr($open_hours_at_wednesday, -2);
+    if ($zoo_close_at > 17) {
+        print("  {$zoo['city']}, {$zoo['owner']}\n");
+        print("  Время работы в среду $open_hours_at_wednesday\n\n");
+    }
+  }
+}
+
+function show_two_zoos_with_most_superorder_count($zoos) {
+  print("2 зоопарка с наибольшим количеством видов животных:\n");
+  print_zoo_data($zoos);
+}
+
+function print_zoo_data($zoos) {
   $schetchik = 0;
   foreach ($zoos as $zoo) {
     print("Зоопарк - {$zoo['city']} - {$zoo['owner']}:\n");
@@ -86,14 +110,7 @@ function show_two_zoos_with_most_animals_count($zoos) {
   }
 }
 
-// 2 зоопарка с наибольшим количеством особей животных:
-// Зоопарк - Москва - Алберт Энштейн
-// Животные:
-//   Антилопа: 200 особей
-//   Хомяк: 200 особей
-// Зоопарк - Москва - Алберт Энштейн
-// Животные:
-//   Антилопа: 200 особей
+
 
 // [0] => SimpleXMLElement Object
 //     (
