@@ -9,6 +9,19 @@
 // 3. Вывести зоопарки которые можно посещать в среду после 17 часов.
 // 4. Вывести 2 зоопарка с самым большим количеством видов животных перечислить их и их количество.
 // 5. Экспортировать это всё в excel
+// print php_ini_loaded_file();
+// exit;
+
+
+
+// $file->addSheet('sheet_two')
+//     ->header(['name', 'age'])
+//     ->data([
+//         ['james', 33],
+//         ['king', 33]
+//     ]);
+//
+// $file->output();
 
 define('PATH', './zoo.xml');
 if (file_exists(PATH)) {
@@ -43,32 +56,49 @@ if (file_exists(PATH)) {
 
     $zoos_sorted_by_superorder_count[count($zoo_data->ANIMAL)] = $zoo;
     krsort($zoos_sorted_by_superorder_count);
-
-    show_all_zoo_info($zoo['owner'], $zoo['city'], $zoo['animals'], $zoo['open_hours']);
   }
+
+  $fileObject  = new \Vtiful\Kernel\Excel(['path' => './']);
+  $xlsx_object = $fileObject->fileName('tutorial.xlsx');
+
+  $xlsx_object = show_all_zoo_info($zoos_sorted_by_animals_total_count, $xlsx_object);
   show_two_zoos_with_most_animals_count($zoos_sorted_by_animals_total_count);
   show_open_zoos_at_wednesday($zoos_sorted_by_animals_total_count);
   show_two_zoos_with_most_superorder_count($zoos_sorted_by_superorder_count);
+  $xlsx_object->output();
 } else {
   throw new \Exception('Не удалось найти файл - ' . PATH . "\n", 1);
 }
 
-function show_all_zoo_info($foo, $city, $animals, $open_hours) {
-  print("Зоопарк:\n");
-  print("  Город: $city\n");
-  print("  Владелец: $foo\n");
-  print("  Часы работы:\n");
-  foreach ($open_hours as $day_of_week => $work_hours) {
-    if ($work_hours == '') {
-      $work_hours = 'Выходной';
+function show_all_zoo_info($zoos, $xlsx_object) {
+  $excel_data = [];
+  foreach ($zoos as $zoo) {
+    $excel_data[] = ['Город', 'Владелец'];
+    $excel_data[] = [$zoo['city'], $zoo['owner']];
+
+
+    print("Зоопарк:\n");
+    print("  Город: {$zoo['city']}\n");
+    print("  Владелец: {$zoo['owner']}\n");
+    print("  Часы работы:\n");
+    $excel_data[] = ['Часы работы'];
+    foreach ($zoo['open_hours'] as $day_of_week => $work_hours) {
+      $excel_data[] = [$day_of_week, $work_hours];
+      if ($work_hours == '') {
+        $work_hours = 'Выходной';
+      }
+      print("    $day_of_week: $work_hours\n");
     }
-    print("    $day_of_week: $work_hours\n");
+    print("  Животные:\n");
+    $excel_data[] = ['Животные'];
+    foreach ($zoo['animals'] as $superorder => $count) {
+      $excel_data[] = [$superorder, $count];
+      print("    $superorder: $count особей\n");
+    }
+    print("\n");
+    $xlsx_object->addSheet('Информация о всех зоопарках')->data($excel_data);
+    return $xlsx_object;
   }
-  print("  Животные:\n");
-  foreach ($animals as $superorder => $count) {
-    print("    $superorder: $count особей\n");
-  }
-  print("\n");
 }
 
 function show_two_zoos_with_most_animals_count($zoos) {
