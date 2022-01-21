@@ -1,4 +1,138 @@
 <?php
+require_once("data_to_xml.php");
+$zoos = [];
+$xml = '<?xml version="1.0"?><ZOOS>';
+foreach ($zoos_general_info as $code => $info) {
+  $xml .= "<OWNER>{$info['owner']}</OWNER>";
+  $xml .= "<CODE>{$code}</CODE>";
+  $xml .= "<CITY>{$info['city']}</CITY>";
+  $xml .= '<OPEN_HOURS>';
+  foreach ($zoos_work_hours[$code] as $day_of_week => $time) {
+    $day_of_week = mb_strtoupper($day_of_week);
+    $xml .= "<$day_of_week>$time</$day_of_week>";
+  }
+  $xml .= '</OPEN_HOURS>';
+
+  $xml .= '<ANIMALS>';
+  foreach ($zoos_animals[$code] as $key => $animal) {
+    $xml .= '<ANIMAL>';
+    foreach ($animal as $animal_property => $animal_property_value) {
+      $animal_property = mb_strtoupper($animal_property);
+      $xml .= "<$animal_property>$animal_property_value</$animal_property>";
+    }
+      $xml .= '</ANIMAL>';
+  }
+  $xml .= '</ANIMALS>';
+}
+$xml .= '</ZOOS>';
+if (file_put_contents('zoos.xml', $xml)) {
+    print("Xml успешно создан.\n");
+}
+exit;
+// <PROP>VALUE</PROP>
+// $string
+
+// $xml = new SimpleXMLElement('<ZOOS/>');
+// array_walk_recursive($zoos, array($xml, 'addChild'));
+
+// $array = [
+//     1 => 2,
+//     2 => [
+//         1 => 'superorder',
+//         2 => (object)[
+//             'leg_count' => 4,
+//             'superorder' => 'pes'
+//         ]
+//     ],
+//     'pes' => 5
+// ];
+//
+// $foo = 1;
+// $leg_count = 'leg_count';
+// $superorder = $array[$array[$foo]][$foo];
+// // должен быть 20;
+// $result = $array[$array[$foo]][$array[$foo]]->$leg_count * $array[$array[$array[$foo]][$array[$foo]]->$superorder] ;
+// print("$result\n");
+
+// массив['aa']
+// объект->aa
+
+
+// $object = (object)[
+//     1 => 3,
+//     'bar' => [
+//         1 => 100,
+//         3 => 2
+//     ],
+//     'aaa' => 1,
+//     3 => 'bar',
+// ];
+// $aaa = 'aaa';
+// $one = $object->$aaa;
+// $three = $object->$one;
+// $bar = $object->$three;
+// // должен быть 200;
+// $result = $object->$bar[$one] * $object->$bar[$three];
+// print("$result\n");
+
+
+
+// $array = [
+//     0 => 1,
+//     1 => 7,
+//     2 => (object)['one' => 20, 'two' => 8, 'array2' => [7 => 4]],
+// ];
+// $foo = 2;
+// $bar = 5;
+// $one = 1;
+// // $aaa = 5;
+// // $object->two7
+// $sss = $array[$one];
+// $result = $bar * $array[$foo]->array2[$array[$one]];
+// print($result);
+
+// $zoos_general_info
+// $zoos_work_hours
+// $zoos_animals
+//
+// <ZOOS>
+//   <ZOO>
+//     <OWNER>Альберт Энштейн</OWNER>
+//     <CODE>331</CODE>
+//     <CITY>Москва</CITY>
+//     <OPEN_HOURS>
+//       <MONDAY>09 - 16</MONDAY>
+//       <TUESDAY>09 - 16</TUESDAY>
+//       <WEDNESDAY></WEDNESDAY>
+//       <THURSDAY>09 - 16</THURSDAY>
+//       <FRIDAY>09 - 20</FRIDAY>
+//       <SATURDAY>09 - 14</SATURDAY>
+//       <SUNDAY></SUNDAY>
+//     </OPEN_HOURS>
+//     <ANIMAL>
+//       <SUPERORDER>Жираф</SUPERORDER>
+//       <MALES>5</MALES>
+//       <FEMALES>5</FEMALES>
+//     </ANIMAL>
+//     <ANIMAL>
+//       <SUPERORDER>Гепард</SUPERORDER>
+//       <MALES>3</MALES>
+//       <FEMALES>2</FEMALES>
+//     </ANIMAL>
+//     <ANIMAL>
+//       <SUPERORDER>Хомяк</SUPERORDER>
+//       <MALES>1</MALES>
+//       <FEMALES>344</FEMALES>
+//     </ANIMAL>
+//     <ANIMAL>
+//       <SUPERORDER>Лев</SUPERORDER>
+//       <MALES>1</MALES>
+//       <FEMALES></FEMALES>
+//     </ANIMAL>
+//   </ZOO>
+
+
+exit;
 // xml лежит в той же папке что и скрипт
 // /home/user/projects/zoo.xml
 // /home/user/projects/code_school/script.php
